@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spice Essence</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+    }
+    body {
+      background-color: #fff8f0;
+      color: #333;
+    }
+    header {
+      background-color: #702c1c;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+    }
+    header h1 {
+      font-size: 1.8rem;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 600;
+    }
+    .hero {
+      background-image: url('https://example.com/spice-banner.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    }
+    .hero h2 {
+      font-size: 3rem;
+      max-width: 600px;
+      text-align: center;
+    }
+    .products {
+      padding: 3rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .product-card {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .product-card h3 {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+    .product-card p {
+      margin: 0.5rem 0;
+    }
+    .product-card button {
+      background-color: #702c1c;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .cart {
+      padding: 3rem 2rem;
+      background: #fff3e0;
+      max-width: 900px;
+      margin: auto;
+    }
+    .cart h2 {
+      font-size: 2rem;
+      color: #702c1c;
+      margin-bottom: 1rem;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .cart-item p {
+      margin: 0.5rem 0;
+    }
+    .checkout {
+      text-align: right;
+      margin-top: 2rem;
+    }
+    .checkout button {
+      background-color: #702c1c;
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    footer {
+      background-color: #702c1c;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+    .page-section {
+      padding: 3rem 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    .page-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #702c1c;
+    }
+    .page-section p {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Spice Essence</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#products">Shop</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#cart">Cart</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Discover the Authentic Taste of Sri Lankan Spices</h2>
+  </section>
+
+  <section id="products" class="products">
+    <div class="product-card">
+      <img src="https://example.com/cardamom.jpg" alt="Cardamom">
+      <h3>Premium Cardamom</h3>
+      <p>100g - Rs. 450</p>
+      <button onclick="addToCart('Premium Cardamom', 450)">Add to Cart</button>
+    </div>
+    <div class="product-card">
+      <img src="https://example.com/cinnamon.jpg" alt="Cinnamon">
+      <h3>Organic Cinnamon Sticks</h3>
+      <p>100g - Rs. 320</p>
+      <button onclick="addToCart('Organic Cinnamon Sticks', 320)">Add to Cart</button>
+    </div>
+    <div class="product-card">
+      <img src="https://example.com/cloves.jpg" alt="Cloves">
+      <h3>Handpicked Cloves</h3>
+      <p>100g - Rs. 380</p>
+      <button onclick="addToCart('Handpicked Cloves', 380)">Add to Cart</button>
+    </div>
+  </section>
+
+  <section id="cart" class="cart">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <div class="checkout">
+      <p><strong>Total: Rs. <span id="cart-total">0</span></strong></p>
+      <button onclick="checkout()">Proceed to Checkout</button>
+    </div>
+  </section>
+
+  <section id="about" class="page-section">
+    <h2>About Us</h2>
+    <p>Spice Essence brings you the finest spices sourced directly from Sri Lankan farms. Our mission is to promote the island’s rich culinary heritage while ensuring sustainable and ethical sourcing practices.</p>
+  </section>
+
+  <section id="contact" class="page-section">
+    <h2>Contact Us</h2>
+    <p>Email: info@spiceessence.lk</p>
+    <p>Phone: +94 77 123 4567</p>
+    <p>Address: No. 45, Spice Street, Colombo, Sri Lanka</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Spice Essence. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const cart = [];
+
+    function addToCart(product, price) {
+      cart.push({ product, price });
+      renderCart();
+    }
+
+    function renderCart() {
+      const cartItems = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+      cartItems.innerHTML = '';
+
+      let total = 0;
+      cart.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+        itemDiv.innerHTML = `<p>${item.product}</p><p>Rs. ${item.price}</p>`;
+        cartItems.appendChild(itemDiv);
+        total += item.price;
+      });
+
+      cartTotal.textContent = total;
+    }
+
+    function checkout() {
+      if (cart.length === 0) {
+        alert('Your cart is empty.');
+      } else {
+        alert('Thank you for your purchase!');
+        cart.length = 0;
+        renderCart();
+      }
+    }
+  </script>
+</body>
+</html>
